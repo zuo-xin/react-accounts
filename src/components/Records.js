@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Record from './Record'
-import axios from 'axios'
+
+import * as RecordsAPI from '../utils/RecordsAPI'
 
 class Records extends Component {
 	constructor() {
@@ -13,7 +14,7 @@ class Records extends Component {
 	}
 
 	componentDidMount() {
-		axios.get("https://5bea4792b854d10013109218.mockapi.io/api/v1/records").then(res => {
+		RecordsAPI.getAll().then(res => {
 			console.log(res.data)
 			this.setState({
 				records: res.data,

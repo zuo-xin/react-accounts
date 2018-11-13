@@ -18,9 +18,9 @@ class Record extends Component {
 }
 	
 
-Record.PropTypes = {
+Record.propTypes = {
 	id:PropTypes.string,
-	date:PropTypes.string,
+	date:PropTypes.number,
 	title:PropTypes.string,
 	amount:PropTypes.number
 }
