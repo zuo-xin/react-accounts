@@ -1,19 +1,19 @@
 import React from 'react'
 
-export default class RecordForm extends React.Component{
-	constructor(props){
+export default class RecordForm extends React.Component {
+	constructor(props) {
 		super(props);
 		this.state = {
-			date:"",
-			title:"",
-			amount:""
+			date: "",
+			title: "",
+			amount: ""
 		}
 	}
 
-	valid(){
+	valid() {
 		return this.state.date && this.state.title && this.state.amount
 	}
-	render(){
+	render() {
 		return (
 			<form className="form-inline">
 				<div className="form-group">
