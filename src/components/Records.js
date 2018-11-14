@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Record from './Record'
 
 import * as RecordsAPI from '../utils/RecordsAPI'
-
+import RecordsForm from './RecordsForm'
 class Records extends Component {
 	constructor() {
 		super();
@@ -32,14 +32,16 @@ class Records extends Component {
 	}
 	render() {
 		const { error, isLoaded, records } = this.state;
+
+		let recordsComponnet;
+
 		if (error) {
-			return <div>Error:{error.message}</div>
+			recordsComponnet =  <div>Error:{error.message}</div>
 		} else if (!isLoaded) {
-			return <div>Loading...</div>
+			recordsComponnet =  <div>Loading...</div>
 		} else {
-			return (
+			recordsComponnet =  (
 				<div>
-					<h2>Records</h2>
 					<table className="table table-bordered">
 						<thead>
 							<tr>
@@ -61,6 +63,14 @@ class Records extends Component {
 				</div>
 			);
 		}
+
+		return (
+			<div>
+				<h2>Records</h2>
+				<RecordsForm />
+				{recordsComponnet}
+			</div>
+		)
 	}
 }
 
