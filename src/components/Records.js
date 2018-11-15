@@ -30,11 +30,30 @@ class Records extends Component {
 			}
 		)
 	}
+
+	handleNewRecord(){
+		RecordsAPI.getAll().then(res => {
+			console.log(res.data)
+			this.setState({
+				records: res.data,
+				isLoaded: true
+			})
+		}).catch(
+			error => {
+				console.log(error)
+				this.setState({
+					isLoaded: true,
+					error
+				})
+			}
+		)
+
+	}
+
+
 	render() {
 		const { error, isLoaded, records } = this.state;
-
 		let recordsComponnet;
-
 		if (error) {
 			recordsComponnet =  <div>Error:{error.message}</div>
 		} else if (!isLoaded) {
@@ -48,12 +67,13 @@ class Records extends Component {
 								<th>Date</th>
 								<th>Title</th>
 								<th>Amount</th>
+								<th>operate</th>
 							</tr>
 						</thead>
 						<tbody>
 							{
 								records.map((item, index) =>
-									<Record key={item.id} {...item} />
+									<Record handleNewRecord={this.handleNewRecord.bind(this)} key={item.id+item.amount+item.date+item.amount} {...item} />
 								)
 
 							}
@@ -67,7 +87,7 @@ class Records extends Component {
 		return (
 			<div>
 				<h2>Records</h2>
-				<RecordsForm />
+				<RecordsForm handleNewRecord={this.handleNewRecord.bind(this)} />
 				{recordsComponnet}
 			</div>
 		)
